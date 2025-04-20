@@ -1,0 +1,105 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+button{
+    padding: .3rem .5rem;
+}
+
+/* ------------------------------------------------- */
+body > #addContainerSection{
+    width: 100%;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(247, 229, 229, 0.733);
+}
+body > #addContainerSection > div{
+    width: 40rem;
+    aspect-ratio: 2/1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+}
+/* ---------------------------------------------------- */
+
+body > :nth-child(2){
+    width: 50rem;
+    height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+    'header'
+    'body';
+    background-color: antiquewhite;
+}
+body > :nth-child(2) > header{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    grid-area: header;
+    background-color: azure;
+}
+body > :nth-child(2) > :nth-child(2){
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: .5rem;
+    grid-area: body;
+    background-color: rgb(243, 243, 173);
+}
+
+/* ========================================================== */
+.task{
+    padding: .5em 1.5em;
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: repeat(1fr, 3);
+    grid-template-areas:
+    'checkbox title delete'
+    'checkbox description delete'
+    'checkbox date delete';
+    place-items: center;
+    background-color: rgb(230, 205, 175);
+}
+.checkbox{
+    margin-right: 1.5em;
+    width: 1.5rem;
+    aspect-ratio: 1/1;
+    grid-area: checkbox;
+}
+.title{
+    margin-right: auto;
+    grid-area: title;
+}
+.description{
+    margin-right: auto;
+    grid-area: description;
+}
+.date{
+    margin-right: auto;
+    grid-area: date;
+}
+.delete{
+    grid-area: delete;
+}
+/* ========================================================== */
