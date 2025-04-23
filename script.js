@@ -3,20 +3,20 @@ const taskList = []
 function addTask(a, d){
     const date = new Date().toLocaleDateString()
     const taskId = crypto.randomUUID()
-    taskList.push({title: a, description: d, date: date, id: taskId})
+    taskList.push({title: a, description: d, date: date, id: taskId, completed: false})
     
     document.querySelector('#titleInput').value = ''
     document.querySelector('#descriptionInput').value = ''
-    
+    {}
     renderTasks()
 }
 
-function createTask(title, description, date, id){
+function createTask(title, description, date, id, completed){
     const task = document.createElement('div')
     task.classList.add('task')
     task.dataset.id = id
     task.innerHTML = `
-        <input class="checkbox" type="checkbox">
+        <input class="checkbox" type="checkbox" ${completed ? 'checked' : ''}>
         <h1 class="title">${title}</h1>
         <p class="description">${description}</p>
         <span class="date">${date}</span>
@@ -29,8 +29,17 @@ function renderTasks(){
     taskContainer.innerHTML = ''
     
     taskList.forEach(task => {
-        taskContainer.appendChild(createTask(task.title, task.description, task.date, task.id))
+        taskContainer.appendChild(createTask(task.title, task.description, task.date, task.id, task.completed))
     })
+    updateCounters()
+}
+
+function updateCounters(){
+    const completed = taskList.filter(t => t.completed).length
+    const total = taskList.length
+
+    document.querySelector('#completedCount').textContent = completed
+    document.querySelector('#earringsCount').textContent = total - completed
 }
 
 document.querySelector('body').addEventListener('click', (event) => {
@@ -59,6 +68,14 @@ document.querySelector('body').addEventListener('click', (event) => {
 
         taskList.splice(index, 1)
         renderTasks()
+    }
+
+    if(target.matches('.checkbox')){
+        const taskId = target.closest('.task').dataset.id
+        const task = taskList.find(t => t.id === taskId)
+
+        task.completed = target.checked
+        updateCounters()
     }
 })
 // console.log(taskId)
