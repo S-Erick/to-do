@@ -2,7 +2,8 @@ const taskList = []
 
 function addTask(a, d){
     const date = new Date().toLocaleDateString()
-    taskList.push({title: a, description: d, date: date})
+    const taskId = crypto.randomUUID()
+    taskList.push({title: a, description: d, date: date, id: taskId})
     
     document.querySelector('#titleInput').value = ''
     document.querySelector('#descriptionInput').value = ''
@@ -10,15 +11,16 @@ function addTask(a, d){
     renderTasks()
 }
 
-function createTask(title, description, date){
+function createTask(title, description, date, id){
     const task = document.createElement('div')
     task.classList.add('task')
+    task.dataset.id = id
     task.innerHTML = `
-    <input class="checkbox" type="checkbox">
-    <h1 class="title">${title}</h1>
-    <p class="description">${description}</p>
-    <span class="date">${date}</span>
-    <button class="delete">🗑</button>`
+        <input class="checkbox" type="checkbox">
+        <h1 class="title">${title}</h1>
+        <p class="description">${description}</p>
+        <span class="date">${date}</span>
+        <button class="delete">🗑</button>`
     return task
 }
 
@@ -27,7 +29,7 @@ function renderTasks(){
     taskContainer.innerHTML = ''
     
     taskList.forEach(task => {
-        taskContainer.appendChild(createTask(task.title, task.description, task.date))
+        taskContainer.appendChild(createTask(task.title, task.description, task.date, task.id))
     })
 }
 
@@ -50,5 +52,13 @@ document.querySelector('body').addEventListener('click', (event) => {
             addContainerSection.style.display = 'none'
         }        
     }
+
+    if(target.matches('.delete')){
+        const taskId = target.closest('.task').dataset.id
+        const index = taskList.findIndex(task => task.id === taskId)
+
+        taskList.splice(index, 1)
+        renderTasks()
+    }
 })
-// console.log(titleText)
+// console.log(taskId)

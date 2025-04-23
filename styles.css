@@ -10,6 +10,7 @@ body{
     justify-content: center;
     align-items: center;
     position: relative;
+    background-color: rgb(39, 39, 39);
 }
 button{
     padding: .3rem .5rem;
@@ -45,7 +46,7 @@ body > :nth-child(2){
     grid-template-areas:
     'header'
     'body';
-    background-color: antiquewhite;
+    background-color: rgba(250, 235, 215, 0.335);
 }
 body > :nth-child(2) > header{
     width: 100%;
