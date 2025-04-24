@@ -25,7 +25,7 @@ function createTask(title, description, date, id, completed){
 }
 
 function renderTasks(){
-    const taskContainer = document.querySelector('#task-container')
+    const taskContainer = document.querySelector('#taskContainer')
     taskContainer.innerHTML = ''
     
     taskList.forEach(task => {

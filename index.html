@@ -8,31 +8,34 @@
 </head>
 <body>
     <main>
-        <div></div>
-        <section>
+        <section id="nav">
+            <div class="taskGroup">⁜</div>
+        </section>
+        <section id="main">
             <header>
-                <h1>To Do List</h1>
-                <button id="openAddContainer">+</button>
+                <h1 id="title">Ttfncg</h1>
+                <span id="date">00/00/0000</span>
+                <button id="optionsButton">...</button>
             </header>
-            <div id="task-container">
+            <div id="taskContainer">
                 <div class="task">
                     <input class="checkbox" type="checkbox">
                     <h1 class="title">texto</h1>
-                    <p class="description"> est.</p>
+                    <p class="description"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit eligendi, minus tempore eum placeat voluptatem?</p>
                     <span class="date">00/00/0000</span>
                     <button class="delete">🗑</button>
                 </div>
             </div>
-            <div>
+            <div id="addTaskSection">
                 <button id="addTaskButton">Añadir</button>
-                <input type="text" id="titleInput">
-                <input type="text" id="descriptionInput">
+                <input type="text" id="titleInput" placeholder="Titulo">
+                <input type="text" id="descriptionInput" placeholder="Descripción">
             </div>
         </section>
-        <div>
-            <p>Completed: <span id="completedCount">0</span></p>
-            <p>Earrings: <span id="earringsCount">0</span></p>
-        </div>
+        <section id="counters">
+            <p>Completadas: <span id="completedCount">0</span></p>
+            <p>Pendientes: <span id="earringsCount">0</span></p>
+        </section>
     </main>
 
     <script src="script.js"></script>

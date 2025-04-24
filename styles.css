@@ -9,98 +9,139 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     background-color: rgb(39, 39, 39);
 }
-button{
-    padding: .3rem .5rem;
+main{
+    width: 55rem;
+    aspect-ratio: 1.4/1;
+    min-width: 30rem;
+    min-height: 30rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+    'nav main'
+    'nav counters';
+    resize: both;
+    overflow: auto;
+    background-color: palegoldenrod;
 }
-
-/* ------------------------------------------------- */
-body > #addContainerSection{
+/* ======================================================= */
+#nav{
     width: 100%;
-    height: 100vh;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    background-color: rgba(247, 229, 229, 0.733);
+    height: 100%;
+    background-color: palegreen;
+    grid-area: nav;
 }
-body > #addContainerSection > div{
-    width: 40rem;
-    aspect-ratio: 2/1;
+.taskGroup{
+    width: 2rem;
+    aspect-ratio: 1/1;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+    background-color: red;
 }
-/* ---------------------------------------------------- */
-
-body > :nth-child(2){
-    width: 50rem;
-    height: 90vh;
+/* ======================================================= */
+#main{
+    width: 100%;
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas:
     'header'
-    'body';
-    background-color: rgba(250, 235, 215, 0.335);
+    'container'
+    'addsection';
+    background-color: paleturquoise;
+    grid-area: main;
 }
-body > :nth-child(2) > header{
+/* ------------------------------------- */
+#main header{
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+    'title button'
+    'date button';
+    align-items: center;
+    background-color: papayawhip;
     grid-area: header;
-    background-color: azure;
 }
-body > :nth-child(2) > :nth-child(2){
+#title{
+    grid-area: title;
+}
+#date{
+    grid-area: date;
+}
+#optionsButton{
+    grid-area: button;
+}
+/* ------------------------------------- */
+#taskContainer{
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    gap: .5rem;
-    grid-area: body;
-    background-color: rgb(243, 243, 173);
+    background-color: peachpuff;
+    grid-area: container;
 }
-
-/* ========================================================== */
 .task{
-    padding: .5em 1.5em;
     width: 100%;
-    height: fit-content;
     display: grid;
     grid-template-columns: auto 1fr auto;
-    grid-template-rows: repeat(1fr, 3);
+    grid-template-rows: repeat((3, 1fr));
     grid-template-areas:
-    'checkbox title delete'
-    'checkbox description delete'
-    'checkbox date delete';
-    place-items: center;
-    background-color: rgb(230, 205, 175);
+    'input title button'
+    'input description button'
+    'input date button';
+    align-items: center;
+    background-color: rgb(232, 223, 132);
 }
 .checkbox{
-    margin-right: 1.5em;
-    width: 1.5rem;
-    aspect-ratio: 1/1;
-    grid-area: checkbox;
+    grid-area: input;
 }
 .title{
-    margin-right: auto;
     grid-area: title;
 }
 .description{
-    margin-right: auto;
     grid-area: description;
 }
 .date{
-    margin-right: auto;
     grid-area: date;
 }
 .delete{
-    grid-area: delete;
+    grid-area: button;
 }
-/* ========================================================== */
+/* ------------------------------------- */
+#addTaskSection{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+    'button title'
+    'button description';
+    align-items: center;
+    background-color: rgb(232, 179, 127);
+    grid-area: addsection;
+}
+#addTaskButton{
+    grid-area: button;
+}
+#titleInput{
+    grid-area: title;
+}
+#descriptionInput{
+    grid-area: description;
+}
+
+/* ======================================================= */
+#counters{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 1rem;
+    background-color: palevioletred;
+    grid-area: counters;
+}
