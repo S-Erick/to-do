@@ -25,6 +25,19 @@
     --border-radius-1: 8px;
     --border-radius-2: 8px;
     --border-radius-3: 4px;
+
+    --cards-color: rgba(64, 64, 64, 0.716);
+    --add-task-section-color: rgba(0, 0, 0, 0.652);
+    --background-color: rgb(39, 39, 39);
+    --transp-background-color: rgba(0, 0, 0, 0);
+    
+    --text-color-1: #fff;
+    --text-color-2: #6d6d6d;
+    
+    --border: 1px solid var(--cards-color);
+
+    --backdrop-filter-1: blur(15px);
+    --backdrop-filter-2: blur(10px);
 }
 button{
     width: 2rem;
@@ -37,7 +50,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(39, 39, 39);
+    /* background-color: rgb(79, 79, 79); */
 }
 main{
     padding-top: var(--padding-1);
@@ -54,14 +67,14 @@ main{
     resize: both;
     overflow: auto;
     border-radius: var(--border-radius-1);
-    background-color: palegoldenrod;
+    background-color: var(--background-color);
 }
 /* ======================================================= */
 #nav{
     padding: 0 var(--padding-1);
     width: 100%;
     height: 100%;
-    background-color: palegreen;
+    background-color: var(--background-color);
     grid-area: nav;
 }
 .taskGroup{
@@ -71,7 +84,8 @@ main{
     justify-content: center;
     align-items: center;
     border-radius: var(--border-radius-3);
-    background-color: red;
+    background-color: var(--cards-color);
+    color: var(--text-color-1);
     user-select: none;
 }
 /* ======================================================= */
@@ -87,8 +101,20 @@ main{
     'container'
     'addsection';
     border-radius:  var(--border-radius-2) 0 0 var(--border-radius-2);
-    background-color: paleturquoise;
+    background-image: url(img/fondo.avif);
+    filter: saturate(0.58);
+    position: relative;
+    overflow: hidden;
     grid-area: main;
+}
+#main::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(circle, rgba(0,0,0,0) 60%, rgb(0, 0, 0) 100%);
 }
 /* ------------------------------------- */
 #main header{
@@ -101,20 +127,23 @@ main{
     'title button'
     'date button';
     align-items: center;
-    background-color: papayawhip;
+    z-index: 2;
     grid-area: header;
 }
 #title{
     font-size: var(--font-size-1);
     font-weight: var(--font-weight-1);
+    color: var(--text-color-1);
     grid-area: title;
 }
 #date{
     font-size: var(--font-size-3);
     font-weight: var(--font-weight-3);
+    color: var(--text-color-2);
     grid-area: date;
 }
 #optionsButton{
+    color: var(--text-color-1);
     grid-area: button;
 }
 /* ------------------------------------- */
@@ -123,7 +152,7 @@ main{
     height: 100%;
     position: relative;
     overflow-y: scroll;
-    background-color: peachpuff;
+    z-index: 2;
     grid-area: container;
 }
 #taskContainer{
@@ -133,7 +162,6 @@ main{
     display: flex;
     flex-direction: column;
     gap: var(--gap-1);
-    background-color: rgb(233, 138, 55);
 }
 .task{
     padding: var(--padding-3);
@@ -147,7 +175,8 @@ main{
     'input date button';
     align-items: center;
     border-radius: var(--border-radius-3);
-    background-color: rgb(232, 223, 132);
+    background-color: var(--cards-color);
+    backdrop-filter: var(--backdrop-filter-1);
 }
 .checkbox{
     width: 1.5rem;
@@ -158,21 +187,25 @@ main{
 .title{
     font-size: var(--font-size-2);
     font-weight: var(--font-weight-2);
+    color: var(--text-color-1);
     grid-area: title;
 }
 .description{
     margin: var(--gap-1) 0;
     font-size: var(--font-size-3);
     font-weight: var(--font-weight-3);
+    color: var(--text-color-1);
     grid-area: description;
 }
 .date{
     font-size: var(--font-size-4);
-    grid-area: date;
     font-weight: var(--font-weight-4);
+    color: var(--text-color-2);
+    grid-area: date;
 }
 .delete{
     margin-left: var(--padding-3);
+    color: var(--text-color-1);
     grid-area: button;
 }
 /* ------------------------------------- */
@@ -187,28 +220,48 @@ main{
     'title button'
     'description button';
     align-items: center;
+    gap: var(--gap-1);
+    z-index: 2;
     justify-content: center;
-    background-color: rgb(232, 179, 127);
+    background-color: var(--add-task-section-color);
+    border-radius: var(--border-radius-3);
+    backdrop-filter: var(--backdrop-filter-2);
     grid-area: addsection;
 }
 #addTaskButton{
     grid-area: button;
 }
 #titleInput{
+    padding: var(--padding-1);
     height: 100%;
     font-size: var(--font-size-3);
+    background-color: var(--transp-background-color);
+    border: none;
+    color: var(--text-color-1);
     grid-area: title;
 }
 #titleInput::placeholder{
     user-select: none;
 }
+#titleInput:focus{
+    border: none;
+    outline: none;
+}
 #descriptionInput{
+    padding: var(--padding-1);
     height: 100%;
     font-size: var(--font-size-3);
+    background-color: var(--transp-background-color);
+    border: none;
+    color: var(--text-color-1);
     grid-area: description;
 }
 #descriptionInput::placeholder{
     user-select: none;
+}
+#descriptionInput:focus{
+    border: none;
+    outline: none;
 }
 
 /* ======================================================= */
@@ -220,7 +273,7 @@ main{
     gap: 1rem;
     font-size: var(--font-size-3);
     font-weight: var(--font-weight-2);
-    background-color: palevioletred;
+    background-color: var(--background-color);
     grid-area: counters;
     user-select: none;
 }
